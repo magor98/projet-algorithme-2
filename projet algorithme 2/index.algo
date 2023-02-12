@@ -1,0 +1,52 @@
+
+// Probleme 1
+
+procedure sum_of_elements(set1, set2: array of Integer; var sum: Integer)
+begin
+  sum := 0;
+  for i := 0 to Length(set1) - 1 do
+  begin
+    if (not (set1[i] in set2)) and (not (set1[i] in sum)) then
+      sum := sum + set1[i];
+  end;
+  for i := 0 to Length(set2) - 1 do
+  begin
+    if (not (set2[i] in set1)) and (not (set2[i] in sum)) then
+      sum := sum + set2[i];
+  end;
+end;
+
+
+// Probleme 2
+procedure dot_product(v1, v2: array of Real; var ps: Real)
+begin
+  ps := 0;
+  for i := 0 to Length(v1) - 1 do
+    ps := ps + v1[i] * v2[i];
+end;
+
+procedure is_orthogonal(v1, v2: array of Real)
+var
+  ps: Real;
+begin
+  dot_product(v1, v2, ps);
+  if ps = 0 then
+    WriteLn('Vectors are orthogonal')
+  else
+    WriteLn('Vectors are not orthogonal');
+end;
+
+function dot_product(v1, v2: array of Real): Real
+var
+  ps: Real;
+begin
+  ps := 0;
+  for i := 0 to Length(v1) - 1 do
+    ps := ps + v1[i] * v2[i];
+  dot_product := ps;
+end;
+
+function is_orthogonal(v1, v2: array of Real): Boolean
+begin
+  is_orthogonal := dot_product(v1, v2) = 0;
+end;
